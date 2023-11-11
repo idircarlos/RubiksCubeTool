@@ -10,6 +10,8 @@ import rubikcube.action.ConsolidatedAction;
 import solutioning.strategy.Action;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -50,7 +52,7 @@ class ScoreResultTest {
         ScoreResult<RubikCube> b = new ScoreResult<>(4.0, new RubikCube(3));
         ScoreResult<RubikCube> c = new ScoreResult<>(2.4, new RubikCube(3));
         List<ScoreResult<RubikCube>> list = List.of(a, b, c);
-        List<ScoreResult<RubikCube>> sorted = list.stream().sorted().toList();
+        List<ScoreResult<RubikCube>> sorted = list.stream().sorted().collect(Collectors.toList());
         assertThat(sorted.get(0).getScore(), equalTo(4.0));
         assertThat(sorted.get(1).getScore(), equalTo(2.4));
         assertThat(sorted.get(2).getScore(), equalTo(1.2));

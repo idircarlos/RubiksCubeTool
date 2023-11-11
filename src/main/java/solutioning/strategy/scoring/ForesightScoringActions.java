@@ -5,6 +5,7 @@ import solutioning.strategy.Action;
 import solutioning.strategy.Subject;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ForesightScoringActions<S> {
 
@@ -34,7 +35,7 @@ public class ForesightScoringActions<S> {
                 ex.printStackTrace();
             }
         }
-        return candidates.stream().sorted().toList();
+        return candidates.stream().sorted().collect(Collectors.toList());
     }
 
     public boolean processEnough(List<ScoreResult<S>> scoreResultList, int foresightCount, int maxForesightCount, Double prevScore) {
@@ -52,7 +53,7 @@ public class ForesightScoringActions<S> {
     public List<ScoreResult<S>> filterScoreResultListByRemovingItemsWithCertainScores(List<ScoreResult<S>> scoreResultList, List<Double> scoresToRemove){
         return scoreResultList.stream()
                 .filter(scoreResult -> !scoresToRemove.contains(scoreResult.getScore()))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public List<Double> getLastFewScoresToSkip(ScoreResult<S> scoreResult, int skipLastScoreCount){
@@ -62,6 +63,6 @@ public class ForesightScoringActions<S> {
             subList = scoreList.subList(scoreList.size() - skipLastScoreCount, scoreList.size());
         }
         Set<Double> pastScores = new HashSet<>();
-        return subList.stream().filter(i -> !pastScores.add(i)).toList();
+        return subList.stream().filter(i -> !pastScores.add(i)).collect(Collectors.toList());
     }
 }

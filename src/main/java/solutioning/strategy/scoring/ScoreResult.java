@@ -6,6 +6,7 @@ import solutioning.strategy.Subject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ScoreResult<S> implements Comparable<ScoreResult<S>> {
 
@@ -58,11 +59,11 @@ public class ScoreResult<S> implements Comparable<ScoreResult<S>> {
     }
 
     public List<Action<S>> getActionList(){
-        return actionScoreList.stream().map(Pair::getValue0).toList();
+        return actionScoreList.stream().map(Pair::getValue0).collect(Collectors.toList());
     }
 
     public List<Double> getScoreList(){
-        return actionScoreList.stream().map(Pair::getValue1).toList();
+        return actionScoreList.stream().map(Pair::getValue1).collect(Collectors.toList());
     }
 
     public int getActionCount(){

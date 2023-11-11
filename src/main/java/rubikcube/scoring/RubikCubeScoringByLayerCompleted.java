@@ -5,6 +5,7 @@ import rubikcube.RubikCube.FACE;
 import solutioning.strategy.Subject;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RubikCubeScoringByLayerCompleted extends RubikCubeScoringByCompletionPercentage{
@@ -18,7 +19,7 @@ public class RubikCubeScoringByLayerCompleted extends RubikCubeScoringByCompleti
                 .keySet()
                 .stream()
                 .filter(face -> cube.getFace(face).isComplete())
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public List<FACE> getAdjacentFaces(FACE face){

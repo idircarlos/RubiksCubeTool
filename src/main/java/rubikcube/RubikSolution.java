@@ -11,6 +11,7 @@ import solutioning.strategy.scoring.ScoringStrategy;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RubikSolution {
@@ -99,7 +100,7 @@ public class RubikSolution {
           Action<RubikCube> action = rubikCube.getAllActions()[random.nextInt(actionCount)];
           rubikCube.performAction(action);
           return action;
-        }).toList();
+        }).collect(Collectors.toList());
     }
 
     public List<Action<RubikCube>> reverseActions(List<Action<RubikCube>> originalActions){
@@ -107,6 +108,6 @@ public class RubikSolution {
                 .boxed()
                 .map(i -> originalActions.get(originalActions.size() - i))
                 .map(Action::oppositeAction)
-                .toList();
+                .collect(Collectors.toList());
     }
 }
