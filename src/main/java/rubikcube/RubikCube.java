@@ -317,4 +317,71 @@ public class RubikCube implements Subject<RubikCube> {
             getBottom().rotateAntiClockwise();
         }
     }
+
+    public void performAlgorithm(String algorithm) {
+        String[] moves = algorithm.split(" ");
+        for (int i = 0; i < moves.length; i++) {
+            String move = RubikMove.cleanIfTwo(moves[i]);
+            System.out.println(move + " " + moves[i]);
+            performMove(move);
+            if (RubikMove.isTwoMove(moves[i])) performMove(move);   // If there is 2, then perform again the move.
+        }
+    }
+
+    public void performMove(String move) {
+        try {
+            switch (move) {
+            case RubikMove.R:
+                turnColUp(2);
+                break;
+            case RubikMove.R_PRIME:
+                turnColDown(2);
+                break;
+            case RubikMove.L:
+                turnColDown(0);
+                break;
+            case RubikMove.L_PRIME:
+                turnColUp(0);
+                break;
+            case RubikMove.U:
+                turnRowToLeft(0);
+                break;
+            case RubikMove.U_PRIME:
+                turnRowToRight(0);
+                break;
+            case RubikMove.D:
+                turnRowToRight(2);
+                break;
+            case RubikMove.D_PRIME:
+                turnRowToLeft(2);
+                break;
+            case RubikMove.F:
+                face(FACE.RIGHT);
+                turnColDown(0);
+                face(FACE.LEFT);
+                break;
+            case RubikMove.F_PRIME:
+                face(FACE.RIGHT);
+                turnColUp(0);
+                face(FACE.LEFT);
+                break;
+            case RubikMove.B:
+                face(FACE.RIGHT);
+                turnColUp(2);
+                face(FACE.LEFT);
+                break;
+            case RubikMove.B_PRIME:
+                face(FACE.RIGHT);
+                turnColDown(2);
+                face(FACE.LEFT);
+                break;
+            default:
+                System.err.println("Unkown move: " + move + ". Skipping...");
+                break;
+            }
+        }
+        catch(Exception e) {
+            System.err.println("Invalid move: " + move + ". Skipping...");
+        }
+    }
 }

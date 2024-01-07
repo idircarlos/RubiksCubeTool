@@ -143,13 +143,13 @@ public class RubikSide implements Cloneable{
     }
 
     public static String[] getEmptyString(int size){
-        return IntStream.range(0, size).boxed().map(i -> "         ").toArray(String[]::new);
+        return IntStream.range(0, size).boxed().map(i -> Utils.generateEmptyString(size*3)).toArray(String[]::new);
     }
 
     public String[] getString(){
         return IntStream.range(0, size)
                 .boxed()
-                .map(i -> Arrays.toString(values[i]))
+                .map(i -> RubikColor.drawCell(values[i]))
                 .toArray(String[]::new);
     }
 

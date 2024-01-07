@@ -26,4 +26,12 @@ public class Utils {
     public static int getRandom(int min, int max){
         return new Random().nextInt(max - min + 1) + min;
     }
+
+    public static String generateEmptyString(int size) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < size; i++) {
+            sb.append(" ");
+        }
+        return sb.toString();
+    }
 }

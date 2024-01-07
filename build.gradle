@@ -33,7 +33,7 @@ jacocoTestReport {
 
 application {
     // Define the main class for the application.
-    mainClass = 'rubikcube.RubikSolution'
+    mainClass = 'rubikcube.App'
 }
 
 run {
